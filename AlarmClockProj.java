@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package alarmclockproj;
+package alarm;
 
 /**
  *
  * @author vikas
  */
 import java.util.Scanner;
-public class AlarmClockProj {
+public class Alarm {
 
     /**
      * @param args the command line arguments
@@ -24,7 +24,7 @@ public class AlarmClockProj {
         Scanner sn = new Scanner(System.in);
         
         int hour = sc.nextInt();
-        a.hour = hour;
+        a.setHour(hour);
         
         int min = sc.nextInt();
         a.setMin(min);
@@ -54,14 +54,42 @@ public class AlarmClockProj {
         second = 0;
         isMilitary = false;
         }
-        public void setMin(int m){
-            minute = m;
+        public String setHour(int h){
+            String g = "";
+            if(h < 12 && h > 1){
+                hour= h;
+            }
+            else{
+                g = "That is not a valid hour";
+            }
+            return g;
+        }
+        public int getHour(){
+            
+            return hour;
+        }
+        public String setMin(int m){
+            String g = "";
+            if(m < 60 && m >= 0){
+                minute = m;
+            }
+            else{
+                g = "That is not a valid minute";
+            }
+            return g;
         }
         public int getMin(){
             return minute;
         }
-        public void setSec(int s){
-            second = s;
+        public String setSec(int s){
+            String g = "";
+            if(s < 60 && s >= 0){
+                second = s;
+            }
+            else{
+                g = "That is not a valid minute";
+            }
+            return g;
         }
         public int getSec(){
             return second;
