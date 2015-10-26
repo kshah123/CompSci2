@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package dynamicpoints;
-import java.lang.Math;
 import java.util.Scanner;
 /**
  *
