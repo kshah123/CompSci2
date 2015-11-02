@@ -1,0 +1,131 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package personclass;
+import java.util.Scanner;
+/**
+ *
+ * @author 18shahk
+ */
+public class PersonClass {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        Scanner in = new Scanner(System.in);
+        Scanner num = new Scanner(System.in);
+        
+        System.out.println("What is your gender (male or female)?");
+        String gender = in.next();
+        
+        System.out.println("How tall are you (in inches)?");
+        int height = num.nextInt();
+        
+        System.out.println("How much do you weigh (in pounds)?");
+        int weight = num.nextInt();
+        
+        System.out.println("Type in the year you were born");
+        int age = num.nextInt();
+        
+        System.out.println("What is your hair color?");
+        String hairColor = num.next();
+        
+        System.out.println("What is your name");
+        String name = num.next();
+        
+        System.out.println("What is your eye color?");
+        String eyeColor = num.next();
+        
+        Person NotJonMoss = new Person(gender, height, weight, age, hairColor, name, eyeColor);
+        
+    }
+    public static class Person{
+        private String gender;
+        private int height;
+        private int weight;
+        private int age;
+        private String hairColor;
+        private String name;
+        private String eyeColor;
+        public Person(String g,int h,int w, int a, String hc, String n, String ec){
+            this.setGender(g);
+            this.setHeight(h);
+            this.setWeight(w);
+            this.setAge(a);
+            this.setEyeColor(ec);
+            gender = g;
+            height = h;
+            weight = w;
+            age = a;
+            hairColor = hc;
+            name = n;
+            eyeColor = ec;
+        }
+        public void setGender(String g){
+            if(g.equals("male") || g.equals("female")){
+                gender = g;
+            }
+            else{
+                throw new IllegalArgumentException("That's not male or female");
+            }
+        }
+        public String getGender(){
+            return gender;
+        }
+        public void setHeight(int h){
+            if(h < 40 || h > 75){
+                throw new IllegalArgumentException("That is not betwen 40 and 75 inches");
+            }
+            else{
+                height = h;
+            }
+        }
+        public int getHeight(){
+            return height;
+        }
+        public void setWeight(int w){
+            if(w < 100 || w > 250){
+                throw new IllegalArgumentException("That is not betwen 100 and 250 pounds");
+            }
+            else{
+                weight = w;
+            }
+        }
+        public int getWeight(){
+            return weight;
+        }
+        public void setAge(int a){
+            if(a > 2015){
+                throw new IllegalArgumentException("That is not a year before or on 2015");
+            }
+            else{
+                int years = 2015 - a;
+                age = years;
+            }
+        }
+        public int age(){
+            return age;
+        }
+        public String getHairColor(){
+            return hairColor;
+        }
+        public String getName(){
+            return name;
+        }
+        public void setEyeColor(String ec){
+            if(ec.equals("blue") || ec.equals("green")|| ec.equals("brown")){
+                eyeColor = ec;
+            }
+            else{
+                throw new IllegalArgumentException("That's not blue, gree or brown");
+            }
+        }
+        public String getEyeColor(){
+            return eyeColor;
+        }
+    }
+}
