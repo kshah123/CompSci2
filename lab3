@@ -1,0 +1,70 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package lab3;
+import java.util.Scanner;
+/**
+ *
+ * @author Kush Shah
+ */
+public class Lab3 {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        Scanner in = new Scanner(System.in);
+        
+        System.out.println("You have a right triangle.");
+        
+        System.out.println("What is measure of an angle beta? (Not the right angle)");
+        double beta1 = in.nextDouble();
+        if(beta1 >= 90){
+            throw new IllegalArgumentException("That is not a valid angle measure for an angle that is not the right angle of a right triangle");
+            
+        }
+        double beta = Math.toRadians(beta1);
+        
+        System.out.println("What is the measure of the side across from beta?");
+        double a = in.nextDouble();
+        
+        double c = getHyp(beta, a);
+        double b = getB(beta, a);
+        double alpha1 = getAlpha(a,b);
+        double alpha = Math.toDegrees(alpha1);
+        double gamma = 90.0;
+        
+        double a2 = Math.pow(a,2);
+        double b2 = Math.pow(b,2);
+        double c2 = Math.pow(c,2);
+        
+        System.out.println("The length of side a (the side you entered) is " + a);
+        System.out.println("The length of side b (the other leg) is " + b);
+        System.out.println("The length of side c (the hypotnuse) is " + c);
+        System.out.println("The measure of angle alpha (the angle you did not enter) is " + alpha + "°");
+        System.out.println("The measure of angle beta (the angle you entered) is " + beta1 + "°");
+        System.out.println("The measure of angle gamma (the right angle) is " + gamma + "°");
+        
+        System.out.println("Here's the check (using the pythagorean theorem)");
+        System.out.println(a + "^2 + " + b + "^2 ?= " + c + "^2");
+        System.out.println(a2 + " + " + b2 + " ?= " + c2);
+        System.out.println( a2 + b2 + " = " + c2);
+    }
+    public static double getHyp(double beta, double a){
+        double x = Math.sin(beta);
+        double hyp = a / x;
+        return hyp;
+    }
+    public static double getB(double beta, double a){
+        double x = Math.tan(beta);
+        double b = a / x;
+        return b;
+    }
+    public static double getAlpha(double a, double b){
+        double alpha = Math.atan(b/a);
+        return alpha;
+    }
+}
