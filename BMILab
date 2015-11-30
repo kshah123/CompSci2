@@ -15,7 +15,7 @@ public class BMI {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        double w, h, fw, fh, BMI;
+        double w, h,, BMI;
         Scanner s = new Scanner(System.in);
         
         System.out.println("What is your weight in pounds?");
@@ -23,13 +23,25 @@ public class BMI {
         System.out.println("What is your height in inches?");
         h = s.nextDouble();
         
-        fw = w * .454;
-        fh = h * .0254;
+        fw = finalw(w);
+        fh = finalh(h);
         
-        BMI = fw/(fh*fh);
+        BMI = getBMI(fw,fh);
      
         System.out.println("Your BMI is " + BMI);
 
+    }
+    public static double finalw(double w){
+        weight = fw = w * .454;
+        return weight;
+    }
+    public static double finalh(double h){+
+        height = h * .0254;
+        return height;
+    }
+    public static double getBMI(double w, double h){+
+        BMI = w/(h*h);
+        return BMI;
     }
     
 }
