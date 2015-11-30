@@ -15,7 +15,7 @@ public class Math3 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        double average, h, m, totalmin, stride, distance;
+        double average, h, m, stride;
         stride = 2.5;
         Scanner s = new Scanner(System.in);
         System.out.println("How many hours did you jog?");
@@ -25,11 +25,15 @@ public class Math3 {
         System.out.println("What is your average stride per minute?");
         average = s.nextDouble();
         
-        totalmin = m + (60 * h);
-        
-        distance = (totalmin * stride)/5280;
+        minT = totalMin(m,h);
+        distance = getDistance(minT);
         
         System.out.println("You jogged" + distance + "miles today");
     }
-
+    public static double totalMin(double m, double h){
+        totalmin = m + (60 * h);
+    }
+    public static double getDistance(totalMin){
+    distance = (totalmin * stride)/5280.0;
+    }
 }
