@@ -7,9 +7,9 @@ package math4;
 import java.util.Scanner;
 /**
  *
- * @author 18chenj
+ * @author 18shahk
  */
-public class Math4 {
+public class Yard {
 
     /**
      * @param args the command line arguments
