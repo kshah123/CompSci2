@@ -22,7 +22,7 @@ public class Math7 {
         human = 13 + 5.33*(dogi - 1);
         System.out.println("In human years, your dog is approximately " + Math.round(human) + "years old");
         
-
+        
 
     }
     
