@@ -1,0 +1,37 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package math4;
+import java.util.Scanner;
+/**
+ *
+ * @author 18chenj
+ */
+public class Math4 {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        double spd, yardl, yardw, heightl, heightw, finala, finalt;
+        Scanner s = new Scanner(System.in);
+        spd = 2;
+        System.out.println("Enter the width and length of the yard");
+        yardw = s.nextDouble();
+        yardl = s.nextDouble();
+        System.out.println("Enter the width and length of the house");
+        heightw = s.nextDouble();
+        heightl = s.nextDouble();
+        
+        finala = (yardw*yl) - (heightw*hl);
+        
+        finalt = finala/120;
+        
+        System.out.println("It will take" + finalt + "minutes to mow the lawn");
+         
+  
+    }
+    
+}
