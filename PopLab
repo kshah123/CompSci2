@@ -1,0 +1,32 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package math5;
+import java.util.Scanner;
+/**
+ *
+ * @author 18shahk
+ */
+public class popLab {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        double initial;
+        double finalp; 
+        growthr, d;
+        Scanner s = new Scanner(System.in);
+        System.out.println("What is the initial population");
+        initialp = s.nextDouble();
+        System.out.println("What is the final population");
+        finalp = s.nextDouble();
+        
+        growthr = (finalp - initialp)/initialp * 100;
+        
+        System.out.println("The growth rate is " + growthr + " percent");
+    }
+    
+}
