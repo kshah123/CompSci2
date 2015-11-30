@@ -31,5 +31,5 @@ public class Math3 {
         
         System.out.println("You jogged" + distance + "miles today");
     }
-    
+
 }
