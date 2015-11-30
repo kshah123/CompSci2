@@ -9,21 +9,22 @@ import java.util.Scanner;
  *
  * @author 18shahk
  */
-public class Math7 {
+public class dogLab {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        double dogi, human;
+        double dog, human;
         Scanner s = new Scanner(System.in);
         System.out.println("how many years old is your dog?");
-        dogi = s.nextDouble();
-        human = 13 + 5.33*(dogi - 1);
+        dog = s.nextDouble();
+        human = getHuman(dog);
         System.out.println("In human years, your dog is approximately " + Math.round(human) + "years old");
-        
-        
 
+    }
+    public static double getHuman(double dog){+
+        human = 13 + 5.33*(dog - 1);
     }
     
 }
