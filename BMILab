@@ -43,5 +43,5 @@ public class BMI {
         BMI = w/(h*h);
         return BMI;
     }
-    
+
 }
