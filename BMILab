@@ -27,7 +27,7 @@ public class BMI {
         fh = h * .0254;
         
         BMI = fw/(fh*fh);
-    
+     
         System.out.println("Your BMI is " + BMI);
 
     }
