@@ -32,8 +32,10 @@ public class Math3 {
     }
     public static double totalMin(double m, double h){
         totalmin = m + (60 * h);
+        return totalmin
     }
     public static double getDistance(totalMin){
-    distance = (totalmin * stride)/5280.0;
+        distance = (totalmin * stride)/5280.0;
+        return distance
     }
 }
