@@ -1,0 +1,35 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package math6;
+import java.util.Scanner;
+/**
+ *
+ * @author 18shahk
+ */
+public class BMI {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        double w, h, fw, fh, BMI;
+        Scanner s = new Scanner(System.in);
+        
+        System.out.println("What is your weight in pounds?");
+        w = s.nextDouble();
+        System.out.println("What is your height in inches?");
+        h = s.nextDouble();
+        
+        fw = w * .454;
+        fh = h * .0254;
+        
+        BMI = fw/(fh*fh);
+        
+        System.out.println("Your BMI is " + BMI);
+
+    }
+    
+}
