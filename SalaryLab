@@ -21,19 +21,16 @@ public class salLab {
        sal = s.nextDouble();
        dep = s.nextDouble();
        
-       fin = sal/5 - 1000 - (2000*dep); 
+       fin = finalSD(sal, dep);
        
        if (fin<0)
            System.out.println("your tax value is below zero");
        else
         System.out.println("Your gross salary is " + fin + "dollars");
-       
-       
-       
-      
-       
-      
 
     }
-    
+    public static double finalSD(double sal, double dep){
+        double final = sal/5 - 1000 - (2000*dep); 
+        return final;
+    }
 }
