@@ -1,0 +1,35 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package strideLab;
+import java.util.Scanner;
+/**
+ *
+ * @author 18shahk
+ */
+public class Math3 {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        double average, h, m, totalmin, stride, distance;
+        stride = 2.5;
+        Scanner s = new Scanner(System.in);
+        System.out.println("How many hours did you jog?");
+        h = s.nextDouble();
+        System.out.println("How many minutes did you jog?");
+        m = s.nextDouble();
+        System.out.println("What is your average stride per minute?");
+        average = s.nextDouble();
+        
+        totalmin = m + (60 * h);
+        
+        distance = (totalmin * stride)/5280;
+        
+        System.out.println("You jogged" + distance + "miles today");
+    }
+    
+}
