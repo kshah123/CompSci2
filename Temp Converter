@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+public class Lab1 {
+	public static void main(String args[]){
+		Scanner in = new Scanner(System.in);
+		Scanner input = new Scanner(System.in);
+		
+		System.out.println("Do you want to convert from F to C or C to F?");
+		String type = in.next();
+		
+		System.out.println("What is the value you want to convert?");
+		double temp = input.nextDouble();
+		
+		String typeFin = "";
+		double tempFin = 0;
+		
+		if(type.equals("f to c")){
+			typeFin = "˚ C";
+			tempFin = toC(temp);
+		}
+		else if(type.equals("c to f")){
+			typeFin = "˚ F";
+			tempFin = toF(temp);
+		}
+
+		System.out.println(tempFin + typeFin);
+	}
+	public static double toF(double c){
+		double f = c * (9/5) + 32;
+		return f;
+	}
+	public static double toC(double f){
+		double c = f * (5/9) - 32;
+		return c;
+	}
+}
