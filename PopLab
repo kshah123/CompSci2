@@ -16,17 +16,22 @@ public class popLab {
      */
     public static void main(String[] args) {
         double initial;
-        double finalp; 
-        growthr, d;
+        double final; 
+        double growthr;
+        double d;
         Scanner s = new Scanner(System.in);
         System.out.println("What is the initial population");
-        initialp = s.nextDouble();
+        initial = s.nextDouble();
         System.out.println("What is the final population");
-        finalp = s.nextDouble();
+        final = s.nextDouble();
         
-        growthr = (finalp - initialp)/initialp * 100;
+        growthr = gRate(final, initial);
         
         System.out.println("The growth rate is " + growthr + " percent");
+    }
+    public static double gRate(double f, double i){
+        growthr = (f - i)/i * 100;
+        retrun growthr;
     }
     
 }
