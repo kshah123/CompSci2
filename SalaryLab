@@ -1,0 +1,39 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package math9;
+import java.util.Scanner;
+/**
+ *
+ * @author 18shahk
+ */
+public class salLab {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+       double sal, dep, fin, d;
+       Scanner s = new Scanner(System.in);
+       System.out.println("What is your gross salary, and number of dependants?");
+       sal = s.nextDouble();
+       dep = s.nextDouble();
+       
+       fin = sal/5 - 1000 - (2000*dep); 
+       
+       if (fin<0)
+           System.out.println("your tax value is below zero");
+       else
+        System.out.println("Your gross salary is " + fin + "dollars");
+       
+       
+       
+      
+       
+      
+
+    }
+    
+}
