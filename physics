@@ -16,16 +16,9 @@ public class PhysicsLab {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-       Scanner in = new Scanner(System.in);
-       
-       physics();
-        
-        System.out.println("Do you want to do another calculation (y or n)?");
-        String yn = in.next();
+       String yn = physics();
         while(yn.equals("y")){
-            physics();
-            System.out.println("Do you want to do another calculation (y or n)?");
-            yn = in.next();
+            yn = physics();
         }
     }
     
@@ -110,7 +103,7 @@ public class PhysicsLab {
         return v0;
     }
 
-    public static void physics(){
+    public static String physics(){
         Scanner in = new Scanner(System.in);
         
         int counter = 0;
@@ -232,5 +225,8 @@ public class PhysicsLab {
             System.out.println("D: " + missing1);
             System.out.println("T: " + missing2);
         }
+        System.out.println("Do you want to do another calculation (y or n)?");
+        String yn = in.next();
+        return yn;
     }
 }
