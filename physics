@@ -113,7 +113,7 @@ public class PhysicsLab {
         String[] ins = new String[4];
 
         while(counter != 2){
-            System.out.println("In order, type in the values for the intiital velocity, final velocity, acceleration, distance and time, separate the values with a comma.");
+            System.out.println("In order, type in the values for the intital velocity, final velocity, acceleration, distance and time, separate the values with a comma.");
             System.out.println("For only 2 of the values, input an '?'. I will solve for this value");
             
             counter = 0;
