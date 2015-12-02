@@ -24,6 +24,8 @@ public class PhysicsLab {
         String yn = in.next();
         while(yn.equals("y")){
             physics();
+            System.out.println("Do you want to do another calculation (y or n)?");
+            yn = in.next();
         }
     }
     
@@ -64,7 +66,7 @@ public class PhysicsLab {
         return t;
     }
     public static double tNoA(double v0, double vf, double d){
-        double t = (2*d) / (v0 - vf);
+        double t = (2*d) / (v0 + vf);
         return t;
     }
     public static double tNoVf(double v0, double a, double d){
@@ -107,60 +109,43 @@ public class PhysicsLab {
         double v0 = (d - (.5 * a * Math.pow(t, 2))) / t;
         return v0;
     }
-    public static int getInput(){
+
+    public static void physics(){
         Scanner in = new Scanner(System.in);
         
-        System.out.println("In order, type in the values for the intiital velocity, final velocity, acceleration, distance and time, separate the values with a comma.");
-        System.out.println("For only 2 of the values, input an 'x'.");
-        
-        String input = in.next();
-        String[] ins = input.split(",");
-        
         int counter = 0;
         int counter2 = 0;
-        int[] miss = new int[ins.length + 1];
-        int[] given = new int[ins.length + 1];
-        
-        for(int i = 0; i < 5; i++){
-            if(ins[i].equals("x") || ins[i].equals(" x")){
-                miss[counter] = i;
-                counter++;
-            }
-            else{
-                given[counter2] = i;
-                counter2++;
-            }
-        }
-        return counter;
-    }
-    public static void physics(){
-         Scanner in = new Scanner(System.in);
-        
-        System.out.println("In order, type in the values for the intiital velocity, final velocity, acceleration, distance and time, separate the values with a comma.");
-        System.out.println("For only 2 of the values, input an 'x'.");
-        
-        String input = in.next();
-        String[] ins = input.split(",");
-        
-        int counter = 0;
-        int counter2 = 0;
-        int[] miss = new int[ins.length + 1];
-        int[] given = new int[ins.length + 1];
-        
-        for(int i = 0; i < 5; i++){
-            if(ins[i].equals("x") || ins[i].equals(" x")){
-                miss[counter] = i;
-                counter++;
-            }
-            else{
-                given[counter2] = i;
-                counter2++;
-            }
-        }
-        
+        int[] miss = new int[5];
+        int[] given = new int[5];
+        String[] ins = new String[4];
+
         while(counter != 2){
-            System.out.println("That is not a valid input, please try again");
-            counter = getInput();
+            System.out.println("In order, type in the values for the intiital velocity, final velocity, acceleration, distance and time, separate the values with a comma.");
+            System.out.println("For only 2 of the values, input an '?'. I will solve for this value");
+            
+            counter = 0;
+            counter2 = 0;
+            ins = new String[4];
+            miss = new int[ins.length + 1];
+            given = new int[ins.length + 1];
+            
+            String input = in.next();
+            ins = input.split(",");
+            
+        
+            for(int i = 0; i < 5; i++){
+                if(ins[i].equals("?")){
+                    miss[counter] = i;
+                    counter++;
+                }
+                else{
+                    given[counter2] = i;
+                    counter2++;
+                }
+            }
+            if(counter != 2){
+                System.out.println("That is not a valid input");
+            }
         }
         
         int miss1 = miss[0];
@@ -235,7 +220,7 @@ public class PhysicsLab {
         }
         else if(miss1 == 2 && miss2 == 4){
             missing1 = aNoT(d,e,f);
-            missing2 = tNoVf(d,e,f);
+            missing2 = tNoA(d,e,f);
             
             System.out.println("A: " + missing1);
             System.out.println("T: " + missing2);
