@@ -122,7 +122,6 @@ public class PhysicsLab {
         int[] given = new int[ins.length + 1];
         
         for(int i = 0; i < 5; i++){
-            String dataVal = ins[i];
             if(ins[i].equals("x") || ins[i].equals(" x")){
                 miss[counter] = i;
                 counter++;
@@ -149,7 +148,6 @@ public class PhysicsLab {
         int[] given = new int[ins.length + 1];
         
         for(int i = 0; i < 5; i++){
-            String dataVal = ins[i];
             if(ins[i].equals("x") || ins[i].equals(" x")){
                 miss[counter] = i;
                 counter++;
@@ -230,7 +228,7 @@ public class PhysicsLab {
         }
         else if(miss1 == 2 && miss2 == 3){
             missing1 = aNoD(d,e,f);
-            missing2 = dNoVf(d,e,f);
+            missing2 = dNoA(d,e,f);
             
             System.out.println("A: " + missing1);
             System.out.println("D: " + missing2);
