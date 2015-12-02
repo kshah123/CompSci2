@@ -19,25 +19,25 @@ public class PhysicsLab {
         Scanner in = new Scanner(System.in);
         
         System.out.println("In order, type in the values for the intiital velocity, final velocity, acceleration, distance and time, separate the values with a comma.");
-        System.out.println("For only 2 of the values, input a '?'.");
+        System.out.println("For only 2 of the values, input an 'x'.");
         
         String input = in.next();
-        String[] values = input.split(",");
+        String[] ins = input.split(",");
         
         int counter = 0;
         int counter2 = 0;
-        int[] miss = new int[values.length + 1];
-        int[] given = new int[values.length + 1];
+        int[] miss = new int[ins.length + 1];
+        int[] given = new int[ins.length + 1];
         
         for(int i = 0; i < 5; i++){
-            String value = values[i];
-            if(value.equals("?") || value.equals(" ?")){
+            String dataVal = ins[i];
+            if(ins[i].equals("x") || ins[i].equals(" x")){
+                miss[counter] = i;
                 counter++;
-                miss[counter] = i + 1;
             }
             else{
+                given[counter2] = i;
                 counter2++;
-                given[counter2] = i + 1;
             }
         }
         
@@ -46,12 +46,12 @@ public class PhysicsLab {
             counter = getInput();
         }
         
-        int miss1 = miss[1];
-        int miss2 = miss[2];
+        int miss1 = miss[0];
+        int miss2 = miss[1];
         
-        String a = values[given[0]];
-        String b = values[given[1]];
-        String c = values[given[2]];
+        String a = ins[given[0]];
+        String b = ins[given[1]];
+        String c = ins[given[2]];
         
         double d = Double.parseDouble(a);
         double e = Double.parseDouble(b);
@@ -60,70 +60,70 @@ public class PhysicsLab {
         double missing1 = 0;
         double missing2 = 0;
         
-        if(miss1 == 1 && miss2 == 2){
+        if(miss1 == 0 && miss2 == 1){
             missing1 = v0NoVf(d,e,f);
             missing2 = vfNoV0(d,e,f);
             
             System.out.println("V0: " + missing1);
             System.out.println("Vf: " + missing2);
         }
-        else if(miss1 == 1 && miss2 == 3){
+        else if(miss1 == 0 && miss2 == 2){
             missing1 = v0NoA(d,e,f);
             missing2 = aNoV0(d,e,f);
             
             System.out.println("V0: " + missing1);
             System.out.println("A: " + missing2);
         }
-        else if(miss1 == 1 && miss2 == 4){
+        else if(miss1 == 0 && miss2 == 3){
             missing1 = v0NoD(d,e,f);
             missing2 = dNoV0(d,e,f);
             
             System.out.println("V0: " + missing1);
             System.out.println("D: " + missing2);
         }
-        else if(miss1 == 1 && miss2 == 5){
+        else if(miss1 == 0 && miss2 == 4){
             missing1 = v0NoT(d,e,f);
             missing2 = tNoV0(d,e,f);
             
             System.out.println("V0: " + missing1);
             System.out.println("T: " + missing2);
         }
-        else if(miss1 == 2 && miss2 == 3){
+        else if(miss1 == 1 && miss2 == 2){
             missing1 = vfNoA(d,e,f);
             missing2 = aNoVf(d,e,f);
             
             System.out.println("Vf: " + missing1);
             System.out.println("A: " + missing2);
         }
-        else if(miss1 == 2 && miss2 == 4){
+        else if(miss1 == 1 && miss2 == 3){
             missing1 = vfNoD(d,e,f);
             missing2 = dNoVf(d,e,f);
             
             System.out.println("Vf: " + missing1);
             System.out.println("D: " + missing2);
         }
-        else if(miss1 == 2 && miss2 == 5){
+        else if(miss1 == 1 && miss2 == 4){
             missing1 = vfNoT(d,e,f);
             missing2 = tNoVf(d,e,f);
             
             System.out.println("Vf: " + missing1);
             System.out.println("T: " + missing2);
         }
-        else if(miss1 == 3 && miss2 == 4){
+        else if(miss1 == 2 && miss2 == 3){
             missing1 = aNoD(d,e,f);
             missing2 = dNoVf(d,e,f);
             
             System.out.println("A: " + missing1);
             System.out.println("D: " + missing2);
         }
-        else if(miss1 == 3 && miss2 == 5){
+        else if(miss1 == 2 && miss2 == 4){
             missing1 = aNoT(d,e,f);
             missing2 = tNoVf(d,e,f);
             
             System.out.println("A: " + missing1);
             System.out.println("T: " + missing2);
         }
-        else if(miss1 == 4 && miss2 == 5){
+        else if(miss1 == 3 && miss2 == 4){
             missing1 = dNoT(d,e,f);
             missing2 = tNoD(d,e,f);
             
@@ -183,7 +183,7 @@ public class PhysicsLab {
         return t;
     }
     public static double tNoV0(double vf, double a, double d){
-        double t = Math.sqrt(-2 * a * d) / a;
+        double t = -Math.sqrt(2 * a * d) / a;
         return t;
     }
     public static double vfNoD(double v0, double a, double t){
@@ -199,7 +199,7 @@ public class PhysicsLab {
         return vf;
     }
     public static double vfNoV0(double a, double d, double t){
-        double vf = (d / t) - ((Math.sqrt(-2 * a * d)) / 2);
+        double vf = (d / t) + ((Math.sqrt(2 * a * d)) / 2);
         return vf;
     }
     public static double v0NoA(double vf, double d, double t){
@@ -221,60 +221,67 @@ public class PhysicsLab {
     public static int getInput(){
         Scanner in = new Scanner(System.in);
         
-        System.out.println("In order, type in the values for the intiital velocity, final velocity, speed, time and distance traveled, separate the values with a comma.");
-        System.out.println("For only 2 of the values, input a '?'.");
+        System.out.println("In order, type in the values for the intiital velocity, final velocity, acceleration, distance and time, separate the values with a comma.");
+        System.out.println("For only 2 of the values, input an 'x'.");
         
         String input = in.next();
-        String[] values = input.split(",");
+        String[] ins = input.split(",");
         
         int counter = 0;
         int counter2 = 0;
-        int[] miss = new int[values.length + 1];
-        int[] given = new int[values.length + 1];
+        int[] miss = new int[ins.length + 1];
+        int[] given = new int[ins.length + 1];
         
-        for(int i = 0; i < values.length; i++){
-            if(values[i].equals("?")){
+        for(int i = 0; i < 5; i++){
+            String dataVal = ins[i];
+            if(ins[i].equals("x") || ins[i].equals(" x")){
+                miss[counter] = i;
                 counter++;
-                miss[counter] = i + 1;
             }
             else{
+                given[counter2] = i;
                 counter2++;
-                given[counter2] = i + 1;
             }
         }
         return counter;
     }
     public static void physics(){
-        Scanner in = new Scanner(System.in);
+         Scanner in = new Scanner(System.in);
         
-        System.out.println("In order, type in the values for the intiital velocity, final velocity, speed, time and distance traveled, separate the values with a comma.");
-        System.out.println("For only 2 of the values, input a '?'.");
+        System.out.println("In order, type in the values for the intiital velocity, final velocity, acceleration, distance and time, separate the values with a comma.");
+        System.out.println("For only 2 of the values, input an 'x'.");
         
         String input = in.next();
-        String[] values = input.split(",");
+        String[] ins = input.split(",");
         
         int counter = 0;
         int counter2 = 0;
-        int[] miss = new int[values.length + 1];
-        int[] given = new int[values.length + 1];
+        int[] miss = new int[ins.length + 1];
+        int[] given = new int[ins.length + 1];
         
-        for(int i = 0; i < values.length; i++){
-            if(values[i].equals("?")){
+        for(int i = 0; i < 5; i++){
+            String dataVal = ins[i];
+            if(ins[i].equals("x") || ins[i].equals(" x")){
+                miss[counter] = i;
                 counter++;
-                miss[counter] = i + 1;
             }
             else{
+                given[counter2] = i;
                 counter2++;
-                given[counter2] = i + 1;
             }
+        }
+        
+        while(counter != 2){
+            System.out.println("That is not a valid input, please try again");
+            counter = getInput();
         }
         
         int miss1 = miss[0];
         int miss2 = miss[1];
         
-        String a = values[given[0]];
-        String b = values[given[1]];
-        String c = values[given[2]];
+        String a = ins[given[0]];
+        String b = ins[given[1]];
+        String c = ins[given[2]];
         
         double d = Double.parseDouble(a);
         double e = Double.parseDouble(b);
@@ -283,75 +290,80 @@ public class PhysicsLab {
         double missing1 = 0;
         double missing2 = 0;
         
-        if(miss1 == 1 && miss2 == 2){
+        if(miss1 == 0 && miss2 == 1){
             missing1 = v0NoVf(d,e,f);
             missing2 = vfNoV0(d,e,f);
             
             System.out.println("V0: " + missing1);
             System.out.println("Vf: " + missing2);
         }
-        else if(miss1 == 1 && miss2 == 3){
+        else if(miss1 == 0 && miss2 == 2){
             missing1 = v0NoA(d,e,f);
             missing2 = aNoV0(d,e,f);
             
             System.out.println("V0: " + missing1);
             System.out.println("A: " + missing2);
         }
-        else if(miss1 == 1 && miss2 == 4){
+        else if(miss1 == 0 && miss2 == 3){
             missing1 = v0NoD(d,e,f);
             missing2 = dNoV0(d,e,f);
             
             System.out.println("V0: " + missing1);
             System.out.println("D: " + missing2);
         }
-        else if(miss1 == 1 && miss2 == 5){
+        else if(miss1 == 0 && miss2 == 4){
             missing1 = v0NoT(d,e,f);
             missing2 = tNoV0(d,e,f);
             
             System.out.println("V0: " + missing1);
             System.out.println("T: " + missing2);
         }
-        else if(miss1 == 2 && miss2 == 3){
+        else if(miss1 == 1 && miss2 == 2){
             missing1 = vfNoA(d,e,f);
             missing2 = aNoVf(d,e,f);
             
             System.out.println("Vf: " + missing1);
             System.out.println("A: " + missing2);
         }
-        else if(miss1 == 2 && miss2 == 4){
+        else if(miss1 == 1 && miss2 == 3){
             missing1 = vfNoD(d,e,f);
             missing2 = dNoVf(d,e,f);
             
             System.out.println("Vf: " + missing1);
             System.out.println("D: " + missing2);
         }
-        else if(miss1 == 2 && miss2 == 5){
+        else if(miss1 == 1 && miss2 == 4){
             missing1 = vfNoT(d,e,f);
             missing2 = tNoVf(d,e,f);
             
             System.out.println("Vf: " + missing1);
             System.out.println("T: " + missing2);
         }
-        else if(miss1 == 3 && miss2 == 4){
+        else if(miss1 == 2 && miss2 == 3){
             missing1 = aNoD(d,e,f);
             missing2 = dNoVf(d,e,f);
             
             System.out.println("A: " + missing1);
             System.out.println("D: " + missing2);
         }
-        else if(miss1 == 3 && miss2 == 5){
+        else if(miss1 == 2 && miss2 == 4){
             missing1 = aNoT(d,e,f);
             missing2 = tNoVf(d,e,f);
             
             System.out.println("A: " + missing1);
             System.out.println("T: " + missing2);
         }
-        else if(miss1 == 4 && miss2 == 5){
+        else if(miss1 == 3 && miss2 == 4){
             missing1 = dNoT(d,e,f);
             missing2 = tNoD(d,e,f);
             
             System.out.println("D: " + missing1);
             System.out.println("T: " + missing2);
         }
-    }
+        
+        System.out.println("Do you want to do another calculation (y or n)?");
+        String yn = in.next();
+        while(yn.equals("y")){
+            physics();
+        }
 }
