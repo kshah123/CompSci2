@@ -1,0 +1,57 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package calc;
+import java.util.Scanner;
+/**
+ *
+ * @author Kush Shah
+ */
+public class Calc {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        String x = calc();
+        while(x.equals("y")|| x.equals("yes")){
+            x = calc();
+        }
+        
+    }
+    public static String calc(){
+        Scanner in = new Scanner(System.in);
+        System.out.println("Type in 2 numbers followed by the operation. Separate them with commas");
+        String user = in.next();
+        String[] listStr = user.split(",");
+        int a = Integer.parseInt(listStr[0]);
+        int b = Integer.parseInt(listStr[1]);
+        int c = 0;
+        if(listStr[2].equals("+")){
+            c = a + b;
+        }
+        else if(listStr[2].equals("-")){
+            c = a - b;
+        }
+        else if(listStr[2].equals("*")){
+            c = a * b;
+        }
+        else if(listStr[2].equals("/")){
+            c = a / b;
+        }
+        else if(listStr[2].equals("%")){
+            c = a % b;
+        }
+        else{
+            throw new IllegalArgumentException("That is not a valid operation");
+        }
+        System.out.println(c);
+        System.out.println("Do you want to perform another operation (y or n)?");
+        String yn = in.next();
+        return yn;
+    }
+    
+}
