@@ -30,20 +30,22 @@ public class Lab3 {
         if(ab.equals("alpha")){
             System.out.println("What is the value for angle alpha?");
             angle = in.nextDouble();
+            double angle1 = Math.toRadians(angle);
             
-            c = getHypA(angle, a);
-            b = getBa(angle, a);
-            ab1 = getBeta(a,b);
+            c = getHypA(angle1, a);
+            b = getBa(angle1, a);
+            ab1 = getBeta(angle);
             g = "beta";
             h = "alpha";
         }
         else if(ab.equals("beta")){
             System.out.println("What is the value for angle beta?");
             angle = in.nextDouble();
+            double angle1 = Math.toRadians(angle);
             
-            c = getHypB(angle, a);
-            b = getBb(angle, a);
-            ab1 = getAlpha(a,b);
+            c = getHypB(angle1, a);
+            b = getBb(angle1, a);
+            ab1 = getAlpha(angle);
             g = "alpha";
             h = "beta";
         }
@@ -52,9 +54,6 @@ public class Lab3 {
         }
         
 
-        double given = Math.toRadians(ab1);
-
-        double alpha = Math.toDegrees(ab1);
         double gamma = 90.0;
         
         double a2 = Math.pow(a,2);
@@ -64,8 +63,8 @@ public class Lab3 {
         System.out.println("The length of side a (the side you entered) is " + a);
         System.out.println("The length of side b (the other leg) is " + b);
         System.out.println("The length of side c (the hypotnuse) is " + c);
-        System.out.println("The measure of angle " + g + " (the angle you did not enter) is " + alpha + "°");
-        System.out.println("The measure of angle " + h + " (the angle you entered) is " + given + "°");
+        System.out.println("The measure of angle " + g + " (the angle you did not enter) is " + angle + "°");
+        System.out.println("The measure of angle " + h + " (the angle you entered) is " + ab1 + "°");
         System.out.println("The measure of angle gamma (the right angle) is " + gamma + "°");
         
         System.out.println("Here's the check (using the pythagorean theorem)");
@@ -79,7 +78,7 @@ public class Lab3 {
         return hyp;
     }
     public static double getHypA(double alpha, double s){
-        double c = s / Math.cos(s);
+        double c = s / Math.cos(alpha);
         return c;
     }
     public static double getBb(double beta, double a){
@@ -87,16 +86,16 @@ public class Lab3 {
         double b = a / x;
         return b;
     }
-    public static double getAlpha(double a, double b){
-        double alpha = Math.atan(b/a);
+    public static double getAlpha(double angle){
+        double alpha = 90.0 - angle;
         return alpha;
     }
-    public static double getBeta(double a, double b){
-        double beta = Math.atan(a/b);
+    public static double getBeta(double angle){
+        double beta = 90.0 - angle;
         return beta;
     }
-    public static double getBa(double s, double a){
-        double beta = Math.tan(a) * s;
+    public static double getBa(double angle, double s){
+        double beta = Math.tan(angle) * s;
         return beta;
     }
 }
