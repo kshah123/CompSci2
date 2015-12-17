@@ -1,0 +1,67 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package grosspay;
+import java.util.Scanner;
+/**
+ *
+ * @author installer
+ */
+public class GrossPay {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        Scanner in = new Scanner(System.in);
+        System.out.println("Type in either s or h, the amount of Floor Wax sold, Soap sold, and Window Cleaner sold. Separate them with commas");
+        String userIn = in.next();
+        String[] jems = userIn.split(",");
+        
+        int numFW = Integer.parseInt(jems[1]);
+        int numS = Integer.parseInt(jems[2]);
+        int numWC = Integer.parseInt(jems[3]);
+        
+        double priceFW = numFW * 13.95;
+        double priceS = numS * 17.95;
+        double priceWC = numWC * 29.95;
+        
+        double salesTotal = priceFW + priceS + priceWC;
+        
+        double percent = 0;
+        int bonus = 0;
+        double commission = 0;
+        
+        if(jems[0].equals("s")){
+            percent = 0.07;
+            commission = percent * salesTotal;
+            if(commission > 300){
+                bonus = 100;
+            }
+        }
+        else if(jems[0].equals("r")){
+            percent = 0.05;
+            commission = percent * salesTotal;
+            if(commission > 200){
+                bonus = 100;
+            }
+        }    
+        else{
+            throw new IllegalArgumentException("That is neither 'h' nor 'f'.");
+        }    
+        
+        double grandTotal = salesTotal + commission + bonus;
+        
+        System.out.println("Total sales for Floor Wax is $" + priceFW);
+        System.out.println("Total sales for Soap is $" + priceS);
+        System.out.println("Total sales for Window Cleaner $" + priceWC);
+        System.out.println("Total sales are $" + salesTotal);
+        System.out.println("The commission was $" + commission);
+        System.out.println("The bonus is $" + bonus);
+        System.out.println("The gross pay is $" + grandTotal);
+    }
+    
+}
