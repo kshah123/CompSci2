@@ -1,0 +1,50 @@
+package carWash;
+import java.util.Scanner;
+
+public class carWash {
+	public static void main(String args[]){
+		Scanner in = new Scanner (System.in);
+		
+		System.out.println("Type in how much gas you want");
+		double amtGas = in.nextDouble();
+		System.out.println("Do you want regular, plus or super gas? (type in r, p or s) ");
+		String type = in.next();
+		System.out.println("Do you want a car wash as well (y or n)?");
+		String wash = in.next();
+		
+		double priceGas = 0;
+		
+		if(type.equals("r")){
+			priceGas = 1.149;
+		}
+		else if(type.equals("p")){
+			priceGas = 1.199;
+		}
+		else if(type.equals("s")){
+			priceGas = 1.289;
+		}
+		else{
+			throw new IllegalArgumentException("That is not a valid type");
+		}
+		
+		double gasTotal = priceGas * amtGas;
+		
+		double washTotal = 0.0;
+		
+		if(wash.equals("y")){
+			if(gasTotal >= 10){
+				washTotal = 1.25;
+			}
+			else{
+				washTotal = 3.0;
+			}
+		}
+		
+		gasTotal = Math.round(gasTotal *100.0) / 100.0;
+		double total = gasTotal + washTotal;
+		
+		System.out.println("Your gas price is $" + gasTotal);
+		System.out.println("Your car wash price is $" + washTotal);
+		System.out.println("Your total price is $" + total);
+	}
+}
