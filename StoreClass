@@ -1,0 +1,100 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package storeproj;
+import java.util.Scanner;
+/**
+ *
+ * @author installer
+ */
+public class StoreProj {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        Scanner in = new Scanner(System.in);
+        System.out.println("What is the location of the store?");
+        String loc = in.next();
+        
+        System.out.println("How many sodas are there?");
+        int x = in.nextInt();
+        
+        System.out.println("How many chips are there?");
+        int y = in.nextInt();
+        
+        System.out.println("How many muffins are there?");
+        int z = in.nextInt();
+        
+        System.out.println("What is the phone number (no parentheses or dashes)");
+        String num = in.next();
+        
+        store a = new store(loc,x,y,z,num);
+        String b = a.getLocation();
+        int c = a.getSodas();
+        int d = a.getChips();
+        int e = a.getMuffins();
+        String f = a.getNum();
+        System.out.println( b+ ", " +c + ", " + d + ", " + e + ", " + f);
+        
+    }
+    public static class store{
+        private String location;
+        private int sodas;
+        private int chips;
+        private int muffins;
+        private String phoneNum;
+        public store(){
+            location = "420 Oval Raod";
+            sodas = 679;
+            chips = 500;
+            muffins = 700;
+            phoneNum = "9738481849";
+        }
+        public store(String l, int s, int c, int m, String p){
+            this.setLocation(l);
+            
+            location = l;
+            sodas = s;
+            chips = c;
+            muffins = m;
+            phoneNum = p;
+        }
+        public void setLocation(String l){
+            location = l;
+        }
+        public String getLocation(){
+            return location;
+        }
+        public void setSodas(int s){
+            sodas = s;
+        }
+        public int getSodas(){
+            return sodas;
+        }
+        public void setChips(int c){
+            chips = c;
+        }
+        public int getChips(){
+            return chips;
+        }
+        public void setMuffins(int m){
+            muffins = m;
+        }
+        public int getMuffins(){
+            return muffins;
+        }
+        public void setNum(String p){
+            if(p.length() > 10 || p.length() < 10 ){
+                throw new IllegalArgumentException("Not a valid phone number");
+            }
+            phoneNum = p;
+        }
+        public String getNum(){
+            return phoneNum;
+        }
+    }
+}
