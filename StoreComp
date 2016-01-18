@@ -1,0 +1,211 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package compstore;
+import java.util.Scanner;
+/**
+ *
+ * @author installer
+ */
+public class CompStore {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // Naming store
+        Scanner in = new Scanner(System.in);
+        System.out.println("What do you want your store to be named?");
+        String name = in.next();
+        //setting number of items
+        System.out.println("How many items do you want?");
+        int x = in.nextInt();
+        item[] items = new item[x];
+        for(int a = 0; a < items.length; a++){
+            //giving properties to each item
+            //set name of item
+            System.out.println("What is the name of your item?");
+            String n = in.next();
+            n = n.toLowerCase();
+            //set quantity of item
+            System.out.println("How many of them do you have?");
+            int q = in.nextInt();
+            //program recognizes if item is in stock or not
+            boolean i = true;
+            if(q == 0){
+                i = false;
+            }
+            //set price of item
+            System.out.println("What is the price of your item?");
+            double p = in.nextDouble();
+            //passes arguments through overloaded constructor
+            item thing = new item(n,q,i,p);
+            items[a] = thing;
+        }
+        
+        //searching for a specific item
+        System.out.println("Do you want to search for an item?");
+        String searchYN = in.next();
+        searchYN = searchYN.toLowerCase();
+        
+        while(searchYN.equals("yes")){
+            System.out.println("What is the name of the item you want to search for?");
+            String searchname = in.next();
+            searchname = searchname.toLowerCase();
+
+            //outputs item properties
+            for(int z = 0; z < items.length; z++){
+                String itemName = items[z].getName();
+                if(itemName.equals(searchname)){
+                    int num = items[z].getQuan();
+                    boolean stock = items[z].isInStock();
+                    double price = items[z].getPrice();
+                    System.out.println("In stock " + stock);
+                    System.out.println("Quantity: " + num);
+                    System.out.println("Price: $" + price);
+                    //checks if buying
+                    if(stock == true){
+                        System.out.println("Do you want to buy this item (yes or no)?");
+                    String buy = in.next();
+                    buy = buy.toLowerCase();
+                    if(buy.equals("yes")){
+                        //asks for how much customer wants to buy
+                        System.out.println("How many do you want to buy?");
+                        int buyq = in.nextInt();
+                        double itemPrice = buyq * price;
+                        
+                        //gives price
+                        System.out.println("It costs $" + itemPrice + ", how much do you want to pay");
+                        double pay = in.nextDouble();
+                        while(pay < itemPrice){
+                            System.out.println("That is not enough money, please pay more");
+                            pay = in.nextDouble();
+                        }
+                        //gives change
+                        if(pay > itemPrice){
+                            double change = pay - itemPrice;
+                            System.out.println("Your change is $" + change);
+                        }
+                        //removes amount of items bought
+                        items[z].sub(buyq);
+                        }
+                    } 
+                }
+                else{
+                    System.out.println("That item does not exist");
+                }
+                break;
+            }
+            System.out.println("Do you want to search for another item?");
+            searchYN = in.next();
+            searchYN = searchYN.toLowerCase();
+        }
+        //adding items back
+        System.out.println("Do you want to re-stock an item?");
+        String restock = in.next();
+        restock = restock.toLowerCase();
+        while(restock.equals("yes")){
+            //searches for item to add back
+            System.out.println("Which item do you want to re-stock?");
+            String searchname = in.next();
+            for(int z = 0; z < items.length; z++){
+                String itemName = items[z].getName();
+                if(itemName.equals(searchname)){
+                    int quan = items[z].getQuan();
+                    System.out.println("You currently have " + quan + " of this item");
+                    System.out.println("How many would you like to add back?");
+                    int addBack = in.nextInt();
+                    items[z].add(addBack);
+                    quan = items[z].getQuan();
+                    System.out.println("You now have " + quan + " of this item");
+                    
+                }
+                break;
+            }
+            System.out.println("Do you want to re-stock another item?");
+            restock = in.next();
+            restock = restock.toLowerCase();
+        }
+        //remove an item
+        System.out.println("Do you want to remove an item?");
+        String remove = in.next();
+        remove = remove.toLowerCase();
+        while(remove.equals("yes")){
+            //searches for item to remove
+            System.out.println("Which item do you want to remove?");
+            String searchname = in.next();
+            for(int z = 0; z < items.length; z++){
+                String itemName = items[z].getName();
+                if(itemName.equals(searchname)){
+                    //sets quantity to 0 and not in stock
+                    items[z].setQuan(0);
+                    items[z].setStock(false);
+                }
+            }
+            break;
+        }
+        
+    }
+    public static class item{
+        private String name;
+        private int quantity;
+        private boolean inStock;
+        private double price;
+        public item(String n, int q, boolean i, double p){
+            this.setQuan(q);
+            this.setPrice(p);
+            
+            name = n;
+            quantity = q;
+            inStock = i;
+            price = p;
+        }
+        public String getName(){
+            return name;
+        }
+        public void setQuan(int q){
+            if(q < 0){
+                throw new IllegalArgumentException("Not a valid number");
+            }
+            quantity = q;
+        }
+        public void add(int q){
+            if(q < 0){
+                throw new IllegalArgumentException("That is not a valid number");
+            }
+            quantity += q;
+        }
+        public void sub(int q){
+
+            if(q < 0 || q >= quantity){
+                throw new IllegalArgumentException("That is not a valid number");
+            }
+            quantity -= q;
+        }
+        public int getQuan(){
+            return quantity;
+        }
+        public boolean setStock(boolean i){
+            inStock = i;
+        }
+        public boolean isInStock(){
+            return inStock;
+        }
+        public void setPrice(double p){
+            if(p < 0){
+                throw new IllegalArgumentException("Not a valid price");
+            }
+            price = p;
+        }
+        public double getPrice(){
+            return price;
+        }
+    }
+}
+
+
+
+
+
