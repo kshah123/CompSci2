@@ -18,15 +18,15 @@ public class CompStore {
         // Naming store
         Scanner in = new Scanner(System.in);
         System.out.println("What do you want your store to be named?");
-        String name = in.next();
+        String name = in.nextLine();
         //setting number of items
         System.out.println("How many items do you want?");
         int x = in.nextInt();
         item[] items = new item[x];
         for(int a = 0; a < items.length; a++){
             //giving properties to each item
-            //set name of item
-            System.out.println("What is the name of your item?");
+            //set name of items
+            System.out.println("What is the name of item " + (a+1)  + "?");
             String n = in.next();
             n = n.toLowerCase();
             //set quantity of item
@@ -46,6 +46,8 @@ public class CompStore {
         }
         
         //searching for a specific item
+        String cont = "yes";
+        while(cont.equals("yes")){
         System.out.println("Do you want to search for an item?");
         String searchYN = in.next();
         searchYN = searchYN.toLowerCase();
@@ -57,11 +59,12 @@ public class CompStore {
 
             //outputs item properties
             for(int z = 0; z < items.length; z++){
-                String itemName = items[z].getName();
+                int y = z + 1;
+                String itemName = items[y].getName();
                 if(itemName.equals(searchname)){
-                    int num = items[z].getQuan();
-                    boolean stock = items[z].isInStock();
-                    double price = items[z].getPrice();
+                    int num = items[y].getQuan();
+                    boolean stock = items[y].isInStock();
+                    double price = items[y].getPrice();
                     System.out.println("In stock " + stock);
                     System.out.println("Quantity: " + num);
                     System.out.println("Price: $" + price);
@@ -89,7 +92,7 @@ public class CompStore {
                             System.out.println("Your change is $" + change);
                         }
                         //removes amount of items bought
-                        items[z].sub(buyq);
+                        items[y].sub(buyq);
                         }
                     } 
                 }
@@ -102,51 +105,55 @@ public class CompStore {
             searchYN = in.next();
             searchYN = searchYN.toLowerCase();
         }
-        //adding items back
-        System.out.println("Do you want to re-stock an item?");
-        String restock = in.next();
-        restock = restock.toLowerCase();
-        while(restock.equals("yes")){
-            //searches for item to add back
-            System.out.println("Which item do you want to re-stock?");
-            String searchname = in.next();
-            for(int z = 0; z < items.length; z++){
-                String itemName = items[z].getName();
-                if(itemName.equals(searchname)){
-                    int quan = items[z].getQuan();
-                    System.out.println("You currently have " + quan + " of this item");
-                    System.out.println("How many would you like to add back?");
-                    int addBack = in.nextInt();
-                    items[z].add(addBack);
-                    quan = items[z].getQuan();
-                    System.out.println("You now have " + quan + " of this item");
-                    
+            //adding items back
+            System.out.println("Do you want to re-stock an item?");
+            String restock = in.next();
+            restock = restock.toLowerCase();
+            while(restock.equals("yes")){
+                //searches for item to add back
+                System.out.println("Which item do you want to re-stock?");
+                String searchname = in.next();
+                for(int z = 0; z < items.length; z++){
+                    int y = z + 1;
+                    String itemName = items[y].getName();
+                    if(itemName.equals(searchname)){
+                        int quan = items[y].getQuan();
+                        System.out.println("You currently have " + quan + " of this item");
+                        System.out.println("How many would you like to add back?");
+                        int addBack = in.nextInt();
+                        items[y].add(addBack);
+                        quan = items[y].getQuan();
+                        System.out.println("You now have " + quan + " of this item");
+
+                    }
+                    break;
+                }
+                System.out.println("Do you want to re-stock another item?");
+                restock = in.next();
+                restock = restock.toLowerCase();
+            }
+            //remove an item
+            System.out.println("Do you want to remove an item?");
+            String remove = in.next();
+            remove = remove.toLowerCase();
+            while(remove.equals("yes")){
+                //searches for item to remove
+                System.out.println("Which item do you want to remove?");
+                String searchname = in.next();
+                for(int z = 0; z < items.length; z++){
+                    int y = z + 1;
+                    String itemName = items[y].getName();
+                    if(itemName.equals(searchname)){
+                        //sets quantity to 0 and not in stock
+                        items[y].setQuan(0);
+                        items[y].setStock(false);
+                    }
                 }
                 break;
             }
-            System.out.println("Do you want to re-stock another item?");
-            restock = in.next();
-            restock = restock.toLowerCase();
+            System.out.println("Do you want to continue shopping?");
+            cont = in.next();
         }
-        //remove an item
-        System.out.println("Do you want to remove an item?");
-        String remove = in.next();
-        remove = remove.toLowerCase();
-        while(remove.equals("yes")){
-            //searches for item to remove
-            System.out.println("Which item do you want to remove?");
-            String searchname = in.next();
-            for(int z = 0; z < items.length; z++){
-                String itemName = items[z].getName();
-                if(itemName.equals(searchname)){
-                    //sets quantity to 0 and not in stock
-                    items[z].setQuan(0);
-                    items[z].setStock(false);
-                }
-            }
-            break;
-        }
-        
     }
     public static class item{
         private String name;
