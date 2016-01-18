@@ -187,7 +187,7 @@ public class CompStore {
         public int getQuan(){
             return quantity;
         }
-        public boolean setStock(boolean i){
+        public void setStock(boolean i){
             inStock = i;
         }
         public boolean isInStock(){
