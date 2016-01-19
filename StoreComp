@@ -65,35 +65,39 @@ public class CompStore {
                     int num = items[y].getQuan();
                     boolean stock = items[y].isInStock();
                     double price = items[y].getPrice();
-                    System.out.println("In stock " + stock);
+                    System.out.println("In stock: " + stock);
                     System.out.println("Quantity: " + num);
                     System.out.println("Price: $" + price);
                     //checks if buying
                     if(stock == true){
                         System.out.println("Do you want to buy this item (yes or no)?");
-                    String buy = in.next();
-                    buy = buy.toLowerCase();
-                    if(buy.equals("yes")){
-                        //asks for how much customer wants to buy
-                        System.out.println("How many do you want to buy?");
-                        int buyq = in.nextInt();
-                        double itemPrice = buyq * price;
-                        
-                        //gives price
-                        System.out.println("It costs $" + itemPrice + ", how much do you want to pay");
-                        double pay = in.nextDouble();
-                        while(pay < itemPrice){
-                            System.out.println("That is not enough money, please pay more");
-                            pay = in.nextDouble();
-                        }
-                        //gives change
-                        if(pay > itemPrice){
-                            double change = pay - itemPrice;
-                            System.out.println("Your change is $" + change);
-                        }
-                        //removes amount of items bought
-                        items[y].sub(buyq);
-                        }
+                        String buy = in.next();
+                        buy = buy.toLowerCase();
+                        if(buy.equals("yes")){
+                            //asks for how much customer wants to buy
+                            System.out.println("How many do you want to buy?");
+                            int buyq = in.nextInt();
+                            while(buyq > num){
+                                System.out.println("There are not enough of that item. Please enter a valid number for that item");
+                                buyq = in.nextInt();
+                            }
+                            double itemPrice = buyq * price;
+
+                            //gives price
+                            System.out.println("It costs $" + itemPrice + ", how much do you want to pay");
+                            double pay = in.nextDouble();
+                            while(pay < itemPrice){
+                                System.out.println("That is not enough money, please pay more");
+                                pay = in.nextDouble();
+                            }
+                            //gives change
+                            if(pay > itemPrice){
+                                double change = pay - itemPrice;
+                                System.out.println("Your change is $" + change);
+                            }
+                            //removes amount of items bought
+                            items[y].sub(buyq);
+                            }
                     } 
                 }
                 else{
@@ -154,6 +158,7 @@ public class CompStore {
             System.out.println("Do you want to continue shopping?");
             cont = in.next();
         }
+        System.out.println("Thank you for shopping at " + name);
     }
     public static class item{
         private String name;
@@ -211,8 +216,3 @@ public class CompStore {
         }
     }
 }
-
-
-
-
-
