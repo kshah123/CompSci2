@@ -60,7 +60,6 @@ public class CompStore {
             //outputs item properties
             for(int z = 0; z < items.length; z++){
                 String itemName = items[z].getName();
-                boolean found = false;
                 if(itemName.equals(searchname)){
                     int num = items[z].getQuan();
                     boolean stock = items[z].isInStock();
@@ -81,31 +80,45 @@ public class CompStore {
                                 System.out.println("There are not enough of that item. Please enter a valid number for that item");
                                 buyq = in.nextInt();
                             }
+                            while(buyq == 0){
+                                System.out.println("You have to buy at least one of the item, please enter a number greater than 0");
+                                buyq = in.nextInt();
+                            }
                             double itemPrice = buyq * price;
 
                             //gives price
                             System.out.println("It costs $" + itemPrice + ", how much do you want to pay");
                             double pay = in.nextDouble();
+                            //checks to make surew that amount paid is a valid price
+                            while(pay < 0){
+                                System.out.println("That is not a valid amount to pay, please enter a valid price");
+                                pay = in.nextDouble();
+                            }
+                            //checks if amount paid is enough
                             while(pay < itemPrice){
                                 System.out.println("That is not enough money, please pay more");
-                                pay += in.nextDouble();
+                                Double addPay = in.nextDouble();
+                                while(addPay < 0){
+                                    System.out.println("That is not a valid amount to pay, please enter a valid price");
+                                    addPay = in.nextDouble();
+                                }
+                                pay += addPay;
                             }
+                            System.out.println("Your item has been bought");
                             //gives change
                             if(pay > itemPrice){
                                 double change = pay - itemPrice;
                                 System.out.println("Your change is $" + change);
                             }
+                            
                             //removes amount of items bought
                             items[z].sub(buyq);
                             }
                     }
-                    found = true;
-                }
-                if(z == (items.length -1) && found == false){
-                    System.out.println("That item does not exist");
                 }
                 
             }
+            //outputs nothing if item cannot be found
             System.out.println("Do you want to search for another item?");
             searchYN = in.next();
             searchYN = searchYN.toLowerCase();
@@ -165,10 +178,7 @@ public class CompStore {
         private int quantity;
         private boolean inStock;
         private double price;
-        public item(String n, int q, boolean i, double p){
-            this.setQuan(q);
-            this.setPrice(p);
-            
+        public item(String n, int q, boolean i, double p){  
             name = n;
             quantity = q;
             inStock = i;
@@ -176,12 +186,6 @@ public class CompStore {
         }
         public String getName(){
             return name;
-        }
-        public void setQuan(int q){
-            if(q < 0){
-                throw new IllegalArgumentException("Not a valid number");
-            }
-            quantity = q;
         }
         public void add(int q){
             if(q < 0){
@@ -191,10 +195,10 @@ public class CompStore {
         }
         public void sub(int q){
 
-            if(q < 0 || q >= quantity){
-                throw new IllegalArgumentException("That is not a valid number");
-            }
             quantity -= q;
+        }
+        public void setQuan(int q){
+            quantity = q;
         }
         public int getQuan(){
             return quantity;
