@@ -58,11 +58,13 @@ public class CompStore {
             String searchname = in.next();
             searchname = searchname.toLowerCase();
 
-            //outputs item properties
+            //goes through array to find item
             for(int z = 0; z < items.length; z++){
                 String itemName = items[z].getName();
                 boolean found = false;
+                //checks if input matches name of each item
                 if(itemName.equals(searchname)){
+                    //outputs item properties
                     int num = items[z].getQuan();
                     boolean stock = items[z].isInStock();
                     double price = items[z].getPrice();
@@ -98,27 +100,29 @@ public class CompStore {
                             }
                             //removes amount of items bought
                             items[z].sub(buyq);
-                            }
+                        }   
+                    }
+                    else{
+                        System.out.println("Sorry, that item is not in stock");
                     }
                     found = true;
                 }
                 if(z == (items.length -1) && found == false){
                     System.out.println("That item does not exist");
-                }
-                
+                }  
             }
             System.out.println("Do you want to search for another item?");
             searchYN = in.next();
             searchYN = searchYN.toLowerCase();
         }
-            //adding items back
+            //adding items
             System.out.println("Do you want to add an item?");
             String add = in.next();
             add = add.toLowerCase();
             while(add.equals("yes")){
-                //searches for item to add back
+                //increases array length by one
                 items = Arrays.copyOf(items, items.length +1);
-                
+                //prompts user for properties of item
                 System.out.println("What is the name of the item you want to add");
                 String newName = in.next();
                 System.out.println("How many do you have?");
@@ -133,6 +137,7 @@ public class CompStore {
                 }
                 System.out.println("What is the price of your item?");
                 double newPrice = in.nextDouble();
+                //creates new instance of item and stores it at the end of the array
                 item newThing = new item(newName, newQuan, newStock, newPrice);
                 items[items.length -1] = newThing;
                 System.out.println("Do you want to add another item?");
