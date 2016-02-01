@@ -1,0 +1,139 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package compositestore;
+
+/**
+ *
+ * @author Kush Shah
+ */
+public class CompositeStore {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+    }
+    public static class store{
+        private static String name;
+        private static String owner;
+        private static String location;
+        private static String phoneNum;
+        private static item[] items;
+        public store(){
+            name = "The James Chen Play Pen ;)";
+            owner = "Vincent Chen";
+            location = "17 Deerfield Road";
+            phoneNum = "609-430-9664";
+            items = new item[5];
+        }
+        public store(String n, String o, String l, String p, int len){
+            this.setNum(p);
+            this.setLen(len);
+            
+            name = n;
+            owner = o;
+            location = l;
+            phoneNum = p;
+            items = new item[len];
+        }
+        public static void setNum(String p){
+            int pLen = p.length();
+            if(pLen != 10){
+                throw new IllegalArgumentException("That's not a valid phone number");
+                //returns an error and stops the code
+            }
+                phoneNum = p;
+        }
+        public static void setLen(int len){
+            if(len < 0){
+                throw new IllegalArgumentException("That's not a valid number of items");
+                //returns an error and stops the code
+            }
+            items = new item[len];
+        }
+        public static String getInfo(){
+            //returns info about store
+            String info = "Name of store: " + name + "\n"
+                            + "Owner of store: " + owner + "\n"
+                            + "Location: " + location + "\n"
+                            + "Phone number: " + phoneNum + "\n"
+                            + "Number of items: " + items.length + "\n";
+            return info;
+        }
+        public static void setItem(String n, int q, double p, int place){
+            //n is name of item
+            //q is quantity
+            //p is price
+            //will detect if item is in stock or not
+            boolean i = false;
+            if(q > 0){
+                i = true;
+            }
+            item thing = new item(n, q, i, p);
+            place -= 1;
+            items[place] = thing;
+            //place where in the array of items you want to put it
+            //So, if the user wants it to be the first element, it will be placed in items[0], which is the first element
+        }
+    }
+    
+    public static class item{
+        private String name;
+        private int quantity;
+        private boolean inStock;
+        private double price;
+        public item(String n, int q, boolean i, double p){
+            this.setQuan(q);
+            this.setPrice(p);
+            
+            name = n;
+            quantity = q;
+            inStock = i;
+            price = p;
+        }
+        public String getName(){
+            return name;
+        }
+        public void setQuan(int q){
+            if(q < 0){
+                throw new IllegalArgumentException("Not a valid number");
+            }
+            quantity = q;
+        }
+        public void add(int q){
+            if(q < 0){
+                throw new IllegalArgumentException("That is not a valid number");
+            }
+            quantity += q;
+        }
+        public void sub(int q){
+
+            if(q < 0 || q >= quantity){
+                throw new IllegalArgumentException("That is not a valid number");
+            }
+            quantity -= q;
+        }
+        public int getQuan(){
+            return quantity;
+        }
+        public void setStock(boolean i){
+            inStock = i;
+        }
+        public boolean isInStock(){
+            return inStock;
+        }
+        public void setPrice(double p){
+            if(p < 0){
+                throw new IllegalArgumentException("Not a valid price");
+            }
+            price = p;
+        }
+        public double getPrice(){
+            return price;
+        }
+    }
+}
