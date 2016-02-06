@@ -1,0 +1,87 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package golf;
+import java.util.Scanner;
+import java.util.Arrays;
+/**
+ *
+ * @author installer
+ */
+public class Golf {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        Scanner in = new Scanner(System.in);
+        System.out.println("What is the par score for the golfers?");
+        int par = in.nextInt();
+        System.out.println("What is the maximum number of golfers?");
+        int scoreLen = in.nextInt();
+        int[] scores = new int[scoreLen];
+        int counter = 0;
+        for(int i = 0; i < scores.length; i++){
+            System.out.println("What is the score for golfer # " + (i + 1) + ". Type 0 when you don't want to report any more scores");
+            int score = in.nextInt();
+            if(score == 0){
+                break;
+            }
+            else{
+                scores[i] = score;
+                counter++;
+            }
+        }
+        scores = Arrays.copyOf(scores, counter);
+        double avg = getAverageRound(scores);
+        int max = getMax(scores);
+        int min = getMin(scores);
+        double OverUnder;
+        System.out.println("The average score was: " + avg);
+        System.out.println("The highest score was: " + max);
+        System.out.println("The lowest score was: " + min);
+        if(avg > par){
+            OverUnder = Math.round(avg) - par;
+            System.out.println("On average, the golfers were " + OverUnder + " over par");
+        }
+        else if(avg < par){
+            OverUnder = par - Math.round(avg);
+            System.out.println("On average, the golfers were " + OverUnder + " under par");
+        }
+        else{
+            System.out.println("On average, the golfers were exactly on par");
+        }
+        
+    }
+    public static double getAverageRound(int[] listScores){
+        int sigScores = 0;
+        for(int i = 0; i < listScores.length; i++){
+            sigScores += listScores[i];
+        }
+        double avg = sigScores/(listScores.length);
+        double finalAvg = Math.round(avg * 100.0)/100.0;
+        return finalAvg;
+    }
+    public static int getMax(int[] listScores){
+        int currentMax = listScores[0];
+        if(listScores.length > 1){
+            for(int i = 0; i < (listScores.length - 1); i++){
+                currentMax = Math.max(listScores[i], listScores[i+1]);
+            }
+        }
+        return currentMax;
+    }
+     public static int getMin(int[] listScores){
+        int currentMin = listScores[0];
+        if(listScores.length > 1){
+            for(int i = 0; i < (listScores.length - 1); i++){
+                currentMin = Math.min(listScores[i], listScores[i+1]);
+            }
+        }
+        return currentMin;
+    }
+}
+
