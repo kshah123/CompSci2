@@ -20,9 +20,7 @@ public class Golf {
         Scanner in = new Scanner(System.in);
         System.out.println("What is the par score for the golfers?");
         int par = in.nextInt();
-        System.out.println("What is the maximum number of golfers?");
-        int scoreLen = in.nextInt();
-        int[] scores = new int[scoreLen];
+        int[] scores = new int[1];
         int counter = 0;
         for(int i = 0; i < scores.length; i++){
             System.out.println("What is the score for golfer # " + (i + 1) + ". Type 0 when you don't want to report any more scores");
@@ -33,9 +31,9 @@ public class Golf {
             else{
                 scores[i] = score;
                 counter++;
+                scores = Arrays.copyOf(scores, scores.length+1);
             }
         }
-        scores = Arrays.copyOf(scores, counter);
         double avg = getAverageRound(scores);
         int max = getMax(scores);
         int min = getMin(scores);
@@ -68,7 +66,7 @@ public class Golf {
     public static int getMax(int[] listScores){
         int currentMax = listScores[0];
         if(listScores.length > 1){
-            for(int i = 0; i < (listScores.length - 1); i++){
+            for(int i = 0; i < (listScores.length); i++){
                 currentMax = Math.max(listScores[i], listScores[i+1]);
             }
         }
@@ -77,11 +75,10 @@ public class Golf {
      public static int getMin(int[] listScores){
         int currentMin = listScores[0];
         if(listScores.length > 1){
-            for(int i = 0; i < (listScores.length - 1); i++){
+            for(int i = 0; i < (listScores.length); i++){
                 currentMin = Math.min(listScores[i], listScores[i+1]);
             }
         }
         return currentMin;
     }
 }
-
