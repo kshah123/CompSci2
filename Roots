@@ -1,0 +1,34 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package roots;
+
+/**
+ *
+ * @author installer
+ */
+public class Roots {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        int[] squares = new int[5];
+        squares[0] = 25;
+        squares[1] = 20;
+        squares[2] = 15;
+        squares[3] = 10;
+        squares[4] = 5;
+        
+        for(int i = 0; i < squares.length; i++){
+           double toRoot = (double)(squares[i]);
+           double root = Math.sqrt(toRoot);
+           double roundRoot = Math.round(root *100.0)/100.0;
+           System.out.println(roundRoot);
+        }
+    }
+    
+}
