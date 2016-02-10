@@ -1,0 +1,41 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package reciprocalsquares;
+import java.util.Scanner;
+import java.lang.Math;
+/**
+ *
+ * @author installer
+ */
+public class ReciprocalSquares {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        Scanner in = new Scanner(System.in);
+        System.out.println("What number do you want to go up to?");
+        int inMax = in.nextInt();
+        double max = (double)(inMax);
+        double currentRec;
+        double currentSq;
+        double currentAdd = 0;
+        for(double i = 1.0; i <= max; i+=1.0){
+            currentRec = 1/i;
+            currentSq = Math.pow(currentRec, 2);
+            currentAdd += currentSq;
+            if(i > 100){
+                break;
+            }
+            if(currentSq < 0.000001){
+                
+            }
+        }
+        System.out.println();
+    }
+    
+}
