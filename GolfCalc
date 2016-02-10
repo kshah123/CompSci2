@@ -21,17 +21,17 @@ public class Golf {
         System.out.println("What is the par score for the golfers?");
         int par = in.nextInt();
         int[] scores = new int[1];
-        int counter = 0;
-        for(int i = 0; i < scores.length; i++){
+        int counter = 1;
+        for(int i = 0; i < counter; i++){
             System.out.println("What is the score for golfer # " + (i + 1) + ". Type 0 when you don't want to report any more scores");
             int score = in.nextInt();
             if(score == 0){
                 break;
             }
             else{
+                scores = Arrays.copyOf(scores, counter);
                 scores[i] = score;
                 counter++;
-                scores = Arrays.copyOf(scores, scores.length+1);
             }
         }
         double avg = getAverageRound(scores);
@@ -42,11 +42,11 @@ public class Golf {
         System.out.println("The highest score was: " + max);
         System.out.println("The lowest score was: " + min);
         if(avg > par){
-            OverUnder = Math.round(avg) - par;
+            OverUnder = avg - par;
             System.out.println("On average, the golfers were " + OverUnder + " over par");
         }
         else if(avg < par){
-            OverUnder = par - Math.round(avg);
+            OverUnder = par - avg;
             System.out.println("On average, the golfers were " + OverUnder + " under par");
         }
         else{
@@ -66,16 +66,16 @@ public class Golf {
     public static int getMax(int[] listScores){
         int currentMax = listScores[0];
         if(listScores.length > 1){
-            for(int i = 0; i < (listScores.length); i++){
+            for(int i = 0; i < (listScores.length-1); i++){
                 currentMax = Math.max(listScores[i], listScores[i+1]);
             }
         }
         return currentMax;
     }
-     public static int getMin(int[] listScores){
+    public static int getMin(int[] listScores){
         int currentMin = listScores[0];
         if(listScores.length > 1){
-            for(int i = 0; i < (listScores.length); i++){
+            for(int i = 0; i < (listScores.length-1); i++){
                 currentMin = Math.min(listScores[i], listScores[i+1]);
             }
         }
