@@ -1,0 +1,97 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package order;
+import java.util.Scanner;
+/**
+ *
+ * @author Kush Shah
+ */
+public class Order {
+
+    /**
+     * @param args the command line arguments
+     */
+    
+    public static double add = 0;
+    public static int customer = 0;
+    public static void main(String[] args) {
+        // TODO code application logic here
+        char yn;
+        Scanner cashier = new Scanner(System.in);
+        do{
+            System.out.println("Welcome to Big Joe's. We sell hambergers and cheeseburgers.");
+            System.out.println("How many hamburgers would you like. Type in the number, a comma and then 'h'");
+
+            String ham = cashier.next();
+            String[] a = ham.split(",");
+            if(a[1].equals("h")){
+                System.out.println("Thank, your order has been recorded");
+            }
+            else{
+                throw new IllegalArgumentException("You did not put a comma between the number and 'h' and/or did not type in 'h' after the number");
+            }
+
+            int h = Integer.parseInt(a[0]);
+
+            System.out.println("Now how many cheeseburgers would you like? Type in the number, a comma and then 'c'");
+
+            String chez = cashier.next();
+            String[] b = chez.split(",");
+            if(b[1].equals("c")){
+                System.out.println("Thank, your order has been recorded");
+            }
+            else{
+                throw new IllegalArgumentException("You did not put a comma between the number and and 'c' and/or did not type in 'c' after the number");
+            }
+
+            int c = Integer.parseInt(b[0]);
+
+            double sub = hPrice(h) + cPrice(c);
+            double tax = Math.round(.05 * sub * 100.0) / 100.0;
+            double price = Math.round(sub * 100.0) / 100.0;
+            double totalDue = Math.round((price + tax) * 100.0) / 100.0;
+
+            System.out.println("Total: " + price);
+            System.out.println("Tax: " + tax);
+            System.out.println("Total dues: " + totalDue);
+
+            System.out.println("Please enter customer payment");
+            double pay = cashier.nextDouble();
+            while(pay < totalDue){
+                System.out.println("That is not enough, please enter more money");
+                double more = cashier.nextDouble();
+                pay += more;
+            }
+
+            double change = pay - totalDue;
+            System.out.println("Your change is $" + change + ". Thank you!");
+            yn = cashier.next().charAt(0);
+            totalDay(totalDue);
+        }while(yn == 'y');
+        double totalDays = getTotal();
+        int cus = getCus();
+        System.out.println("Total for the day: " + totalDays);
+        System.out.println("Number of customers: " + cus);
+    }
+    public static double hPrice(int h){
+        double x = h * 1.19;
+        return x;
+    }
+    public static double cPrice(double c){
+        double x = (c * 1.19) + .2;
+        return x;
+    }
+    public static void totalDay(double p){
+        add = p;
+        customer++;
+    }
+    public static double getTotal(){
+        return add;
+    }
+    public static int getCus(){
+        return customer;
+    }
+}
