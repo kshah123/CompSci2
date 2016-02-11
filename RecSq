@@ -26,11 +26,11 @@ public class RecSq {
         for(int i = 1; i < n; i++) {
           total += ((n/i) * (n/i));
 
-          if (i == 100) {
+          if (i >= 100) {
             break;
           }
 
-          if (total == 0.000001) {
+          if (total >= 0.000001) {
             break;
           }
         }
