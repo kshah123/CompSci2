@@ -1,0 +1,57 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package headstails;
+import java.util.Scanner;
+/**
+ *
+ * @author installer
+ */
+public class HeadsTails {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        Scanner in = new Scanner(System.in);
+        System.out.println("type in a series of either 'h' or 't'. Type in a period when you want to stop reading.");
+        String inHT = in.next();
+        char[] ht = inHT.toCharArray();
+        int i = 0;
+        int counterH = 0;
+        int counterT = 0;
+        do{
+            char a = ht[i];
+            if(a == 'h' || a == 'H'){
+                counterH++;
+            }
+            else if(a == 't' || a == 'T'){
+                counterT++;
+            }
+            else if(a == '.'){
+                break;
+            }
+            else{
+                throw new IllegalArgumentException("You did not input 'h' or 't'");
+            }
+            i++;
+        }while(i < ht.length);
+        if(counterH == 0){
+            System.out.println("All tails");
+        }
+        else if(counterT == 0){
+            System.out.println("All heads");
+        }
+        else{
+            double heads = (double)counterH;
+            double tails = (double)counterT;
+            double ratio = heads/tails;
+            
+            System.out.println("The ratio of heads to tails is: " + ratio);
+        }
+    }
+    
+}
