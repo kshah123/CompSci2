@@ -1,0 +1,46 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package guessing;
+import java.util.Scanner;
+import java.util.Random;
+/**
+ *
+ * @author Kush Shah
+ */
+public class Guessing {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        Scanner console = new Scanner(System.in);
+        Random rm = new Random();
+        char yn;
+        do{
+            int a = 1;
+            int x = rm.nextInt(99)+1;
+            System.out.println("A number from 1 to 100 was generated, try to guess what it is");
+            int n = console.nextInt();
+            while(n != x){
+                if(n < x){
+                    System.out.println("The number you guessed is higher than the number generated");
+                }
+                else if(n > x){
+                    System.out.println("The number you guessed is lower than the number generated");
+                }
+                System.out.println("Take another guess");
+                n = console.nextInt();
+                a++;
+            }
+            System.out.println("Good guess!");
+            System.out.println("Number of attempts it took you to guess the number: " + a);
+            System.out.println("Do you want to play again (y or n)?");
+            yn = console.next().charAt(0);
+        }while(yn == 'y');
+    }
+    
+}
