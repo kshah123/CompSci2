@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package average;
-import java.util.Scanner;
+
 /**
  *
  * @author installer
@@ -16,16 +16,27 @@ public class Average {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Scanner in = new Scanner(System.in);
+        EasyReader console = new EasyReader(System.in);
         System.out.println("What is the number of students?");
-        int n = in.nextInt();
-        int[] scoreAvg = new int[n];
+        int n = console.intInput();
+        double[] scoreAvg = new double[n];
         for(int i = 0; i < n; i++){
             System.out.println("What are the 4 test scores for student #" + (i+1));
-            for(int x = 0; x < 4; x++){
-                
-            }
+            double a = console.doubleInput();
+            double b = console.doubleInput();
+            double c = console.doubleInput();
+            double d = console.doubleInput();
+            
+            double avg = (a+b+c+d)/4;
+            scoreAvg[i] = avg;
         }
+        double sig = 0;
+        for(int i = 0; i < n; i++){
+            System.out.println("The average for student " + (i+1) + " is " + scoreAvg[i]);
+            sig += scoreAvg[i];
+        }
+        double finAvg = sig/n;
+        System.out.println("The overall average is " + finAvg);
     }
     
 }
