@@ -1,3 +1,85 @@
+// File: EasyReader.java from the package edu.colorado.io
+// Complete documentation is available from the EasyReader link in:
+//   http://www.cs.colorado.edu/~main/docs
+package average;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader; 
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.io.PushbackReader;
+
+/******************************************************************************
+* The <CODE>EasyReader</CODE> object has a small collection of methods for
+* reading some primitive data values from an input stream or file.
+*
+* <P><B>Limitations:</B>
+* <BR>
+* If an <CODE>IOException</CODE> or <CODE>FileNotFoundException</CODE> occurs
+* during any  operation, then the
+* <CODE>EasyReader</CODE> prints an error message and halts the program.
+* The exceptions is not passed back to the calling program,
+* so the calling program does not need to catch any exceptions. 
+*
+* <P><B>Example:</B>
+* <BR>
+* This example declares an <CODE>EasyReader</CODE> that is attached to the
+* keyboard input (<CODE>System.in</CODE>). It then uses 
+* <CODE>doubleQuery</CODE> to ask the user to enter a double number. The
+* square of this double number is then printed:
+* <CODE>
+* <BR>  import edu.colorado.io.EasyReader
+* <BR>  ...
+* <BR>  EasyReader stdin = new EasyReader(System.in); // Attaches to keyboard
+* <BR>  double d;
+* <BR>  d = stdin.doubleQuery("Please type a double value: ");
+* <BR>  System.out.println("The square of that is: " + d*d);  
+* <BR></CODE>
+*
+* <b>The <CODE>EasyReader</CODE> class includes:</b>
+*   
+*   (1) Three constructors to create an <CODE>EasyReader</CODE> from an
+*   <CODE>InputStream</CODE>, from an <CODE>InputStreamReader</CODE>, or from
+*   a file name. For example, to create an <CODE>EasyReader</CODE> from 
+*   <CODE>System.in</CODE>:
+*   <br><code>EasyReader stdin = new EasyReader(System.in);</CODE>
+*   
+*   (2) Query methods: The names of these methods end with "Query".
+*   Each method prints a prompt (which is a String parameter) and then reads
+*   one line of input, converting the line to some type (char, double,
+*   int, or String). All of the query methods reject improperly formatted
+*   input lines (such as a 1.5 for an integer input). When an input line is
+*   rejected, the method prompts the user for a correctly formatted input.
+*   This continues until an input line is typed in the correct format.
+*   
+*   (3) Peek method: This method returns the next character of the input
+*   without actually reading it.
+*   
+*   (4) Input methods: The names of these methods end with "Input" or
+*   "InputLine". The methods read input and convert it to some type
+*   (char, double, int, or String). The "Input" methods just read the
+*   data, and the "InputLine" methods  read the data and then discard the rest
+*   of the line.
+*   
+*   (5) Boolean methods: The names of these methods begin with "is". They
+*   return various information about the input status.
+*   
+*   (6) The methods skipLine and ignore. They
+*   read and throw away various input.
+* 
+* <b>Java Source Code for this class:</b>
+*   <A HREF="../../../../edu/colorado/io/EasyReader.java">
+*   http://www.cs.colorado.edu/~main/edu/colorado/io/EasyReader.java
+*   </A>
+*
+* @author 
+*   Michael Main (main@colorado.edu)
+*
+* @version Feb 10, 2016
+*
+* @see FormatWriter
+******************************************************************************/
 public class EasyReader extends PushbackReader 
 {
    final static int  EOF_VALUE = -1;      // Returned by read( ) at EOF
