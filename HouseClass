@@ -1,26 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
-/**
- *
- * @author Kush Shah
- */
-package house;
-
 public class House {
     private int st;
     private int ave;
     private int number;
     private boolean delivered;
-    public House(int s, int a, String l){
+    private int listElement;
+    public House(int s, int a, String l, int i){
         st = s;
         ave = a;
         number = this.setNumber(l);
         delivered = false;
+        listElement = i;
     }
     public int getSt(){
         return st;
@@ -82,5 +71,8 @@ public class House {
     }
     public boolean checkDelivered(){
         return delivered;
+    }
+    public int getEle(){
+        return listElement;
     }
 }
