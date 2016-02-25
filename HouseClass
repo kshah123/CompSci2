@@ -1,0 +1,79 @@
+public class House {
+    private int st;
+    private int ave;
+    private char EastWest;
+    private int number;
+    private boolean delivered;
+    public House(int s, int a, String l){
+        st = s;
+        ave = a;
+        EastWest = this.EastWest(l);
+        number = this.setNumber(l);
+        delivered = false;
+    }
+    public int getSt(){
+        return st;
+    }
+    public int getAve(){
+        return ave;
+    }
+    public char EastWest(String l){
+        char ew = 'w';
+        if(l.length() == 2){
+            ew = 'e';
+        }
+        return ew;
+    }
+    public int setNumber(String l){
+        int n = 0;
+        switch (l) {
+            case "a":
+            case "aa":
+                n = 0;
+                break;
+            case "b":
+            case "bb":
+                n = 1;
+                break;
+            case "c":
+            case "cc":
+                n = 2;
+                break;
+            case "d":
+            case "dd":
+                n = 3;
+                break;
+            case "e":
+            case "ee":
+                n = 4;
+                break;
+            case "f":
+            case "ff":
+                n = 5;
+                break;
+            case "g":
+            case "gg":
+                n = 6;
+                break;
+            case "h":
+            case "hh":
+                n = 7;
+                break;
+            case "i":
+            case "ii":
+                n = 8;
+                break;
+            case "j":
+            case "jj":
+                n = 9;
+                break;
+        }
+        return n;
+    }
+    public void deliver(){
+        delivered = true;
+    }
+    public boolean checkDelivered(){
+        return delivered;
+    }
+}
