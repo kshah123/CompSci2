@@ -53,6 +53,25 @@ public class Grades {
             double percent = ((double) (correct.get(i)))/ total;
             System.out.println("Student #" + resp.get(i).get(0) + " got a " + percent + "%");
         }
+        console.close();
+        console = new Scanner(System.in);
+        System.out.println("Do you want to add any additional student info?");
+        String yn = console.next();
+        while(yn.equals("y")){
+            System.out.println("Please enter the info as follows: student number, a space and then the responses with no spaces between them");
+            String num = console.next();
+            String answers = console.next();
+            char ansList[] = answers.toCharArray();
+            c = 0;
+            for(int i = 0; i < ans.size(); i++){
+                if(ans.get(i).equals(ansList[i]))
+                    c++;
+            }
+            double percent = ((double)(c))/total;
+            System.out.println("Student #" + num + "got a " + percent + "%");
+            System.out.println("Do you want to add any additional info?");
+            yn = console.nextLine();
+        }
     }
     
 }
