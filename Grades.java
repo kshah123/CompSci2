@@ -54,6 +54,7 @@ public class Grades {
             System.out.println("Student #" + resp.get(i).get(0) + " got a " + percent + "%");
         }
         console.close();
+        //beggining of part 4
         console = new Scanner(System.in);
         System.out.println("Do you want to add any additional student info?");
         String yn = console.next();
