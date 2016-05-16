@@ -49,11 +49,15 @@ public class Grades {
             correct.add(c);
             c = 0;
         }
+        File out = new File("results.txt");
+        PrintWriter pw = new PrintWriter(out);
         for(int i = 0; i < resp.size(); i++){
             double percent = ((double) (correct.get(i)))/ total;
             System.out.println("Student #" + resp.get(i).get(0) + " got a " + percent + "%");
+            pw.println(resp.get(i).get(0) + " " + percent);
         }
         console.close();
+        
         //beggining of part 4
         console = new Scanner(System.in);
         System.out.println("Do you want to add any additional student info?");
@@ -70,9 +74,11 @@ public class Grades {
             }
             double percent = ((double)(c))/total;
             System.out.println("Student #" + num + "got a " + percent + "%");
+            pw.println(num + " " + percent);
             System.out.println("Do you want to add any additional info?");
             yn = console.nextLine();
         }
+        pw.close();
     }
     
 }
