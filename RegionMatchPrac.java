@@ -20,16 +20,16 @@ public class RegionMatchPrac {
         System.out.println("Type in 2 strings, click enter after typing each one");
         String s1 = console.next();
         String s2 = console.next();
-        System.out.println("For the first string, from which value (0 to " + (s1.length()-1) + ") you want to check. It first element will be inclusive, the last element will be exclusive");
+        System.out.println("For the first string, from which value (0 to " + s1.length() + ") you want to check. It first element will be inclusive, the last element will be exclusive");
         String[] t = console.next().split(",");
         int r1 = Integer.parseInt(t[0]);
         int r2 = Integer.parseInt(t[1]);
         char[] str1 = s1.substring(r1,r2).toCharArray();
-        System.out.println("For the second string, from which value (0 to " + (s1.length()-1) + ") you want to check. It first element will be inclusive, the last element will be exclusive");
+        System.out.println("For the second string, from which value (0 to " + s2.length() + ") you want to check. It first element will be inclusive, the last element will be exclusive");
         String[] t1 = console.next().split(",");
-        r1 = Integer.parseInt(t1[0]);
-        r2 = Integer.parseInt(t1[1]);
-        char[] str2 = s1.substring(r1,r2).toCharArray();
+        int y1 = Integer.parseInt(t1[0]);
+        int y2 = Integer.parseInt(t1[1]);
+        char[] str2 = s2.substring(y1,y2).toCharArray();
         boolean match = rMatch(str1, str2);
         System.out.println(match);
         
@@ -46,7 +46,7 @@ public class RegionMatchPrac {
                 s2[i]-= 32;
         }
         for(int i = 0; i < s1.length; i++){
-            if(s1[i] != s2[2])
+            if(s1[i] != s2[i])
                 return false;
         }
         return true;
